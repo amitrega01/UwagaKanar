@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "93083890482",
+    "firebase_url": "https://uwagakanar-63f10.firebaseio.com",
+    "project_id": "uwagakanar-63f10",
+    "storage_bucket": "uwagakanar-63f10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93083890482:android:cd2bc0e45e64ea06",
+        "android_client_info": {
+          "package_name": "com.dev.insu.uwagakanar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "93083890482-131s64qc4pok7n4rt2f980fduj0fcph2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dev.insu.uwagakanar",
+            "certificate_hash": "2abb935b40d0833fee25604ec87fcdfeab77b492"
+          }
+        },
+        {
+          "client_id": "93083890482-mdhgitna938vjkp3sbvlg6ar4b5l215s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeZ_s_HYLH0Y0KwJQhbTsRRcZsk2gK_vg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "93083890482-mdhgitna938vjkp3sbvlg6ar4b5l215s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

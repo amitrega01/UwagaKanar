@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context="com.dev.insu.uwagakanar.WelcomeScreen">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/logo"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/textPowitalny"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/roboto_light"
+        android:shadowColor="#000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        android:text="@string/powitalny"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="300dp"
+        android:layout_height="140dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        app:cardCornerRadius="15dp">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/signInText"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:text="@string/zaloguj"
+            android:textAlignment="center"
+            android:fontFamily="@font/roboto_light"/>
+
+
+        <ImageView
+            android:id="@+id/space"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/signInText"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/spacer"
+            />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/signUpText"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="70dp"
+            android:gravity="center"
+            android:text="@string/zarejestruj"
+            android:textAlignment="center"
+            android:fontFamily="@font/roboto_light" />
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

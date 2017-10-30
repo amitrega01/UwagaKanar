@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">UwagaKanar</string>
+    <string name="powitalny">Dziel sie informacjami o kontroli biletów
+w sieciach autobusów miejskich.
+Przygotuj sie na kontrolę
+dzięki naszej aplikacji.</string>
+    <string name="zarejestruj">zarejestruj się</string>
+    <string name="zaloguj">zaloguj się</string>
+    <string name="login">email</string>
+    <string name="haslo">hasło</string>
+    <string name="imie">imię</string>
+    <string-array name="miasta">
+        <item>Bielsko-Biała</item>
+        <item>Białystok</item>
+        <item>Kraków</item>
+        <item>Wrocław</item>
+        <item>Warszawa</item>
+        <item>Katowice</item>
+    </string-array>
+    <string name="ostrzez">Ostrzeż przed kontrolą</string>
+    <string name="miasto">Miasto</string>
+    <string name="linia">Linia</string>
+    <string name="godzina">Godzina</string>
+</resources>
