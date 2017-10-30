@@ -22,6 +22,16 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/top_bar" />
 
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="14dp"
+        android:background="@android:drawable/ic_notification_clear_all"
+        android:backgroundTint="@color/cardview_light_background" />
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
@@ -56,10 +66,10 @@
 
     <LinearLayout
         android:id="@+id/ostrzezenia"
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="90dp"
-        android:layout_below="@id/miasto">
+        android:layout_below="@id/miasto"
+        android:orientation="horizontal">
 
     </LinearLayout>
 
@@ -95,40 +105,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <AutoCompleteTextView
+                <TextView
                     android:id="@+id/btnMiasto"
                     android:layout_width="300dp"
                     android:layout_height="60dp"
                     android:background="@null"
                     android:fontFamily="@font/roboto_light"
                     android:hint="@string/miasto"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+
+
+                <TextClock
+                    android:id="@+id/btnGodz"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:layout_below="@id/btnMiasto"
+                    android:background="@null"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center"
+                    android:hint="@string/godzina"
+                    android:inputType="time"
                     android:textAlignment="center" />
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/btnLinia"
                     android:layout_width="300dp"
                     android:layout_height="60dp"
-                    android:layout_below="@id/btnMiasto"
+                    android:layout_below="@id/btnGodz"
                     android:background="@null"
                     android:fontFamily="@font/roboto_light"
-                    android:inputType="number"
                     android:hint="@string/linia"
-                    android:textAlignment="center" />
-
-                <android.support.v7.widget.AppCompatEditText
-                    android:layout_width="300dp"
-                    android:layout_height="60dp"
-                    android:layout_below="@id/btnLinia"
-                    android:background="@null"
-                    android:fontFamily="@font/roboto_light"
-                    android:hint="@string/godzina"
-                    android:inputType="time"
+                    android:inputType="number"
                     android:textAlignment="center" />
             </RelativeLayout>
 
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.AppCompatButton
+            android:id="@+id/confirm"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_below="@id/card1"
