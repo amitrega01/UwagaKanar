@@ -33,7 +33,6 @@ public class SignIn extends AppCompatActivity {
     AppCompatButton okB;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +43,7 @@ public class SignIn extends AppCompatActivity {
         loginT.setText(sp1.getString("Unm", null));
 
         hasloT.setText(sp1.getString("Psw", null));
-        if (!sp1.getBoolean("Is", false)) {
+        if (sp1.getBoolean("Is", false)) {
 
             if (!loginT.getText().toString().isEmpty() && !hasloT.getText().toString().isEmpty()) {
                 signIn(loginT.getText().toString(), hasloT.getText().toString());
@@ -55,7 +54,8 @@ public class SignIn extends AppCompatActivity {
     @OnClick(R.id.okB)
     public void onViewClicked() {
         // Toast.makeText(this, hasloT.getText() + " " + loginT.getText(), Toast.LENGTH_SHORT).show();
-        signIn(loginT.getText().toString(), hasloT.getText().toString());
+        if (!loginT.getText().toString().isEmpty() && !hasloT.getText().toString().isEmpty())
+            signIn(loginT.getText().toString(), hasloT.getText().toString());
     }
 
     private void signIn(String email, String password) {

@@ -3,6 +3,7 @@ package com.dev.insu.uwagakanar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
@@ -44,7 +45,7 @@ public class HomeScreen extends AppCompatActivity {
     AppCompatButton confirm;
     @BindView(R.id.btnLogout)
     AppCompatImageButton btnLogout;
-
+    FirebaseDatabase database;
 
     FirebaseUser user;
     String miastoS;
@@ -56,8 +57,7 @@ public class HomeScreen extends AppCompatActivity {
         setContentView(R.layout.activity_home_screen);
         ButterKnife.bind(this);
         user = SignIn.user;
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -90,7 +90,7 @@ public class HomeScreen extends AppCompatActivity {
 
                     final Warning war = new Warning(btnLinia.getText().toString(), btnGodz.getText().toString(), user.getUid().toString());
 
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
                     final DatabaseReference myRef = database.getReference("warnings");
                     myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -98,7 +98,7 @@ public class HomeScreen extends AppCompatActivity {
                             a = dataSnapshot.child(miastoS).child("count").getValue().toString();
                             int id = Integer.parseInt(a);
                             id++;
-                            if (id>20) id = 0;
+                            if (id > 20) id = 0;
                             a = Integer.toString(id);
                             myRef.child(miastoS).child("count").setValue(a);
                             myRef.child(miastoS).child(a).setValue(war);
@@ -113,10 +113,10 @@ public class HomeScreen extends AppCompatActivity {
                     });
 
 
-
                 }
             }
         });
+        getWarnings();
 
     }
 
@@ -125,7 +125,19 @@ public class HomeScreen extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences("Login", MODE_PRIVATE);
         SharedPreferences.Editor Ed = sp.edit();
         Ed.putBoolean("Is", false);
+        Ed.apply();
         Intent i = new Intent(HomeScreen.this, WelcomeScreen.class);
         startActivity(i);
+    }
+
+    private void getWarnings() {
+
+    }
+
+    private void showWarning(Warning warning) {
+        AppCompatButton b1 = new AppCompatButton(HomeScreen.this);
+        b1.setText(warning.getNrLini());
+        b1.setBackground(getDrawable(R.drawable.button));
+        warnings.addView(b1);
     }
 }
