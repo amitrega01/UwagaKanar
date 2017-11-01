@@ -36,7 +36,7 @@ public class SignUp extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
-    private String miasto;
+    private String miasto = "Bielsko-Biała";
     @BindView(R.id.loginT)
     EditText loginT;
     @BindView(R.id.hasloT)

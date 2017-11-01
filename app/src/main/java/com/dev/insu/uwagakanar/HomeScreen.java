@@ -3,14 +3,16 @@ package com.dev.insu.uwagakanar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageButton;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,21 +47,37 @@ public class HomeScreen extends AppCompatActivity {
     AppCompatButton confirm;
     @BindView(R.id.btnLogout)
     AppCompatImageButton btnLogout;
+
+
     FirebaseDatabase database;
 
     FirebaseUser user;
     String miastoS;
     String a;
+    int btn;
+
+    @BindView(R.id.war1)
+    AppCompatButton war1;
+    @BindView(R.id.war2)
+    AppCompatButton war2;
+    @BindView(R.id.war3)
+    AppCompatButton war3;
+    @BindView(R.id.war4)
+    AppCompatButton war4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         ButterKnife.bind(this);
+        final ProgressDialog mDialog = new ProgressDialog(HomeScreen.this);
+        mDialog.setMessage("Wczytywanie dabych...");
+        mDialog.show();
+        btn = 0;
         user = SignIn.user;
         database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("users");
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -69,7 +87,8 @@ public class HomeScreen extends AppCompatActivity {
                 username.setText(name);
                 miasto.setText(miastoS);
                 btnMiasto.setText(miastoS);
-
+                getWarnings();
+                mDialog.dismiss();
             }
 
             @Override
@@ -78,15 +97,17 @@ public class HomeScreen extends AppCompatActivity {
 
             }
         });
+
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final ProgressDialog mDialog = new ProgressDialog(HomeScreen.this);
-                mDialog.setMessage("Wysyłanie...");
-                mDialog.show();
-                if (btnLinia.getText().toString().isEmpty())
+
+
+                if (btnLinia.getText().toString().isEmpty()) {
                     Toast.makeText(HomeScreen.this, "Musisz podać numer linii", Toast.LENGTH_SHORT).show();
-                else {
+
+
+                } else {
 
                     final Warning war = new Warning(btnLinia.getText().toString(), btnGodz.getText().toString(), user.getUid().toString());
 
@@ -102,7 +123,9 @@ public class HomeScreen extends AppCompatActivity {
                             a = Integer.toString(id);
                             myRef.child(miastoS).child("count").setValue(a);
                             myRef.child(miastoS).child(a).setValue(war);
-                            mDialog.dismiss();
+                            Toast.makeText(HomeScreen.this, "Wysłano ostrzeżenie. Dziękujemy <3", Toast.LENGTH_SHORT).show();
+                            getWarnings();
+
 
                         }
 
@@ -116,7 +139,7 @@ public class HomeScreen extends AppCompatActivity {
                 }
             }
         });
-        getWarnings();
+
 
     }
 
@@ -128,16 +151,61 @@ public class HomeScreen extends AppCompatActivity {
         Ed.apply();
         Intent i = new Intent(HomeScreen.this, WelcomeScreen.class);
         startActivity(i);
+        return;
     }
 
     private void getWarnings() {
 
+        final DatabaseReference myRef = database.getReference("warnings");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int a = Integer.parseInt(dataSnapshot.child(miastoS).child("count").getValue().toString());
+                int c = 0;
+                for (int i = a; i > a - 4; i--) {
+                    try {
+                        if (i <= -1) c = 21 + i;
+                        else c = i;
+                        String nr = Integer.toString(c);
+                        Warning war = dataSnapshot.child(miastoS).child(nr).getValue(Warning.class);
+                        showWarning(war);
+                    } catch (NullPointerException d) {
+                        Toast.makeText(HomeScreen.this, "Brak", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return;
     }
 
     private void showWarning(Warning warning) {
-        AppCompatButton b1 = new AppCompatButton(HomeScreen.this);
-        b1.setText(warning.getNrLini());
-        b1.setBackground(getDrawable(R.drawable.button));
-        warnings.addView(b1);
+
+        war4.setText(war3.getText());
+        war3.setText(war2.getText());
+        war2.setText(war1.getText());
+        war1.setText(warning.getNrLini() + "\n\r" + warning.getGodz());
+        return;
+    }
+
+    @OnClick({R.id.war1, R.id.war2, R.id.war3, R.id.war4})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.war1:
+                break;
+            case R.id.war2:
+                break;
+            case R.id.war3:
+                break;
+            case R.id.war4:
+                break;
+        }
     }
 }
+

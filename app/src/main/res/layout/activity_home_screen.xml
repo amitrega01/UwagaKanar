@@ -66,11 +66,43 @@
 
     <LinearLayout
         android:id="@+id/ostrzezenia"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="90dp"
         android:layout_below="@id/miasto"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
+        <android.support.v7.widget.AppCompatButton
+        android:id="@+id/war1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/button"
+            android:layout_margin="4dp"
 
+        />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/war2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/button"
+
+            android:layout_margin="4dp"
+            />
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/war3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/button"
+
+            android:layout_margin="4dp"
+            />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/war4"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/button"
+            android:layout_margin="4dp"
+            />
     </LinearLayout>
 
     <RelativeLayout

@@ -11,6 +11,10 @@ public class Warning {
     private String godz;
     private String user;
 
+    public Warning() {
+        super();
+    }
+
     public Warning(String nrLini, String godz, String user) {
         this.nrLini = nrLini;
         this.godz = godz;
@@ -40,4 +44,6 @@ public class Warning {
     public void setUser(String user) {
         this.user = user;
     }
+
+
 }
