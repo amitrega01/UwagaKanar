@@ -18,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dev.insu.uwagakanar.Models.Warning;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -64,6 +67,7 @@ public class HomeScreen extends AppCompatActivity {
     AppCompatButton war3;
     @BindView(R.id.war4)
     AppCompatButton war4;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +76,14 @@ public class HomeScreen extends AppCompatActivity {
         ButterKnife.bind(this);
         final ProgressDialog mDialog = new ProgressDialog(HomeScreen.this);
         mDialog.setMessage("Wczytywanie dabych...");
+
+        MobileAds.initialize(this, "ca-app-pub-2935918109676973~6176792789");
+
+        mAdView = (AdView) findViewById(R.id.adView);
+        final AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         mDialog.show();
+
         btn = 0;
         user = SignIn.user;
         database = FirebaseDatabase.getInstance();
@@ -125,7 +136,7 @@ public class HomeScreen extends AppCompatActivity {
                             myRef.child(miastoS).child(a).setValue(war);
                             Toast.makeText(HomeScreen.this, "Wysłano ostrzeżenie. Dziękujemy <3", Toast.LENGTH_SHORT).show();
                             getWarnings();
-
+                            mAdView.loadAd(adRequest);
 
                         }
 
